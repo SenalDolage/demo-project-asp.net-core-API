@@ -25,7 +25,7 @@ namespace AssesmentAPI.Services
         public Door GetSingleDoor(int id) => _doors.Find(door => door.doorId == id).FirstOrDefault();
 
         // Create new Door
-        public void Create(Door door) => _doors.InsertOne(door);
+        public void Create(Door door) => _doors.InsertOne(door); 
 
         // Update a Door
         public void Update(int id, Door updatedDoor) => _doors.ReplaceOne(door => door.doorId == id, updatedDoor);
