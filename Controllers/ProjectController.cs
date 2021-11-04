@@ -21,32 +21,32 @@ namespace AssesmentAPI.Controllers
         public ActionResult<List<Project>> Get() => _projectService.GetProjects();
 
         [HttpGet("{id}")]
-        public ActionResult<Project> Get(int id) => _projectService.GetSingleProject(id);
+        public ActionResult<Project> Get(string id) => _projectService.GetSingleProject(id);
 
         [HttpPost]
         public void Create(Project project) => _projectService.Create(project);
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Project project)
+        public IActionResult Update(string id, Project project)
         {
             var projectToUpdate = _projectService.GetSingleProject(id);
             if (projectToUpdate == null)
             {
                 return NotFound();
             }
-            _projectService.Update(projectToUpdate.projectId, project);
+            _projectService.Update(projectToUpdate.Id, project);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var project = _projectService.GetSingleProject(id);
             if (project == null)
             {
                 return NotFound();
             }
-            _projectService.Delete(project.projectId);
+            _projectService.Delete(project.Id);
             return NoContent();
         }
 

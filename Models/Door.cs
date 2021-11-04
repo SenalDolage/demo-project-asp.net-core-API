@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,11 @@ namespace AssesmentAPI.Models
 {
     public class Door
     {
-        public ObjectId Id { get; set; }
-        public int doorId { get; set; }
-        public int projectId { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        public string projectId { get; set; }
         public string Name { get; set; }
         public string Room { get; set; }
         public string Building { get; set; }
@@ -20,7 +23,7 @@ namespace AssesmentAPI.Models
         public LockType Lock { get; set; }
         public CyclinderType Cyclinder { get; set; }
         public FrameType Frame { get; set; }
-        public Boolean isCompleted { get; set; }
+        public bool isCompleted { get; set; }
 
 
         public class LockType
@@ -28,7 +31,7 @@ namespace AssesmentAPI.Models
             public string Type { get; set; }
             public int Qty { get; set; }
             public string Material { get; set; }
-            public Boolean isCompleted { get; set; }
+            public bool isCompleted { get; set; }
         }
 
         public class CyclinderType
@@ -36,13 +39,13 @@ namespace AssesmentAPI.Models
             public string Type { get; set; }
             public int Qty { get; set; }
             public string Material { get; set; }
-            public Boolean isCompleted { get; set; }
+            public bool isCompleted { get; set; }
         }
 
         public class FrameType
         {
             public string Type { get; set; }
-            public Boolean isCompleted { get; set; }
+            public bool isCompleted { get; set; }
         }
     }
 

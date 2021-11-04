@@ -22,16 +22,16 @@ namespace AssesmentAPI.Services
         public List<Door> GetDoors() => _doors.Find(door => true).ToList();
 
         // Get Door by Id
-        public Door GetSingleDoor(int id) => _doors.Find(door => door.doorId == id).FirstOrDefault();
+        public Door GetSingleDoor(string id) => _doors.Find(door => door.Id == id).FirstOrDefault();
 
         // Create new Door
         public void Create(Door door) => _doors.InsertOne(door); 
 
         // Update a Door
-        public void Update(int id, Door updatedDoor) => _doors.ReplaceOne(door => door.doorId == id, updatedDoor);
+        public void Update(string id, Door updatedDoor) => _doors.ReplaceOne(door => door.Id == id, updatedDoor);
 
         // Delete a Door
-        public void Delete(int id) => _doors.DeleteOne(door => door.doorId == id);
+        public void Delete(string id) => _doors.DeleteOne(door => door.Id == id);
 
     }
 }

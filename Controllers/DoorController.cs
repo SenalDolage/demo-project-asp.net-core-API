@@ -20,38 +20,36 @@ namespace AssesmentAPI.Controllers
             _operationService = operationService;
         }
 
-
-
         [HttpGet]
         public ActionResult<List<Door>> Get() => _operationService.GetDoors();
 
         [HttpGet("{id}")]
-        public ActionResult<Door> Get(int id) => _operationService.GetSingleDoor(id);
+        public ActionResult<Door> Get(string id) => _operationService.GetSingleDoor(id);
 
         [HttpPost]
         public void Create(Door door) => _operationService.Create(door);
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Door door)
+        public IActionResult Update(string id, Door door)
         {
             var doorToUpdate = _operationService.GetSingleDoor(id);
             if (doorToUpdate == null)
             {
                 return NotFound();
             }
-            _operationService.Update(doorToUpdate.doorId, door);
+            _operationService.Update(doorToUpdate.Id, door);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
-            var project = _operationService.GetSingleDoor(id);
-            if (project == null)
+            var doorToUpdate = _operationService.GetSingleDoor(id);
+            if (doorToUpdate == null)
             {
                 return NotFound();
             }
-            _operationService.Delete(project.projectId);
+            _operationService.Delete(doorToUpdate.Id);
             return NoContent();
         }
     }

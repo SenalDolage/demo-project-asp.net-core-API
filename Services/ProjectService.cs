@@ -22,15 +22,15 @@ namespace AssesmentAPI.Services
         public List<Project> GetProjects() => _projects.Find(project => true).ToList();
 
         // Get Project by Id
-        public Project GetSingleProject(int id) => _projects.Find(project => project.projectId == id).FirstOrDefault();
+        public Project GetSingleProject(string id) => _projects.Find(project => project.Id == id).FirstOrDefault();
 
         // Create new Project
         public void Create(Project proj) => _projects.InsertOne(proj);
 
         // Update a Project
-        public void Update(int id, Project updatedProject) => _projects.FindOneAndUpdate(Builders<Project>.Filter.Eq("projectId", id), Builders<Project>.Update.Set("Name", updatedProject.Name).Set("Description", updatedProject.Description).Set("Venue", updatedProject.Venue));
+        public void Update(string id, Project updatedProject) => _projects.ReplaceOne(project => project.Id == id, updatedProject);
 
         // Delete a Project
-        public void Delete(int id) => _projects.DeleteOne(project => project.projectId == id);  
+        public void Delete(string id) => _projects.DeleteOne(project => project.Id == id);  
     }
 }
