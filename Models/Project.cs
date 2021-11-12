@@ -22,7 +22,11 @@ namespace AssesmentAPI.Models
 
         [Required(ErrorMessage = "Venue is required")]
         public string Venue { get; set; }
+
+        [Required(ErrorMessage = "Created Date is required")]
         public string createdDate { get; set; }
+
+        [Required(ErrorMessage = "Modified Date is required")]
         public string modifiedDate { get; set; }
 
     }
